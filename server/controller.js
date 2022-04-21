@@ -1,3 +1,17 @@
+require('dotenv').config()
+const {CONNECTION_STRING} = process.env
+const Sequelize = require('sequelize')
+
+const sequalize = new Sequalize(CONNECTION_STRING, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
+  }
+  
+
 let nextEmp = 5
 
 module.exports = {
