@@ -16,6 +16,8 @@ const {
 app.use(express.json())
 app.use(cors())
 
+// app.post('/seed', seed)
+
 // USERS
 app.get('/clients', getAllClients)
 

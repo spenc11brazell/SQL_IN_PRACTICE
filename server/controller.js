@@ -2,7 +2,7 @@ require('dotenv').config()
 const {CONNECTION_STRING} = process.env
 const Sequelize = require('sequelize')
 
-const sequalize = new Sequalize(CONNECTION_STRING, {
+const sequelize = new Sequelize(CONNECTION_STRING, {
     dialect: 'postgres',
     dialectOptions: {
         ssl: {
@@ -17,8 +17,16 @@ let nextEmp = 5
 module.exports = {
 
     getAllClients: (req, res) => {
-        sequalize.query(`select * from cc_clients c
+        sequelize.query(`select * from cc_clients c
         join cc_users u on c.user_id = u.user_id;`)
+            .then(dbRes => res.status(200).send(dbRes[0]))
+            .catch(err => console.log(err))
+    },
+
+    getPendingAppointments: (req, res) => {
+        sequelize.query(`select * from cc_appointments
+        where approved = false
+        order by date desc;`)
             .then(dbRes => res.status(200).send(dbRes[0]))
             .catch(err => console.log(err))
     },
