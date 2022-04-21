@@ -16,16 +16,14 @@ const {
 app.use(express.json())
 app.use(cors())
 
-// app.post('/seed', seed)
-
 // USERS
 app.get('/clients', getAllClients)
 
 // APPOINTMENTS
-// app.get('/pending', getPendingAppointments)
-// app.get('/upcoming', getUpcomingAppointments)
-// app.get('/appt', getPastAppointments)
-// app.put('/approve', approveAppointment)
-// app.put('/complete', completeAppointment)
+app.get('/pending', getPendingAppointments)
+app.get('/upcoming', getUpcomingAppointments)
+app.get('/appt', getPastAppointments)
+app.put('/approve', approveAppointment)
+app.put('/complete', completeAppointment)
 
 app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
